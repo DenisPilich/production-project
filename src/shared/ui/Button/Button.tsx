@@ -24,30 +24,25 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   disabled?: boolean;
 }
 
-export const Button = memo(({
-  className,
-  theme,
-  size,
-  disabled,
-  ...rest
-}: ButtonProps) => {
-
-  const mods: Record<string, boolean> = {
-    ...(theme && { [cls[theme]]: true }),
-    ...(size && { [cls[size]]: true }),
-    ...(disabled && { [cls.disabled]: true }),
-  };
-  return (
-    <button
-      type="button"
-      className={classNames(cls.Button, mods, className ? [className] : [])}
-      disabled={disabled}
-      {...rest}
-    >
-      {rest.children}
-    </button>
-  );
-});
+export const Button = memo(
+  ({ className, theme, size, disabled, ...rest }: ButtonProps) => {
+    const mods: Record<string, boolean> = {
+      ...(theme && { [cls[theme]]: true }),
+      ...(size && { [cls[size]]: true }),
+      ...(disabled && { [cls.disabled]: true }),
+    };
+    return (
+      <button
+        type="button"
+        className={classNames(cls.Button, mods, className ? [className] : [])}
+        disabled={disabled}
+        {...rest}
+      >
+        {rest.children}
+      </button>
+    );
+  },
+);
 
 export default Button;
 Button.displayName = "Button";

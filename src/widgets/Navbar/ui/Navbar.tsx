@@ -11,7 +11,9 @@ import { Dropdown } from "@/shared/ui/Dropdown/Dropdown";
 import Avatar from "@/shared/ui/Avatar/Avatar";
 import Button, { ThemeButton } from "@/shared/ui/Button/Button";
 import LoginModal from "@/features/AuthByUsername/ui/LoginModal/LoginModal";
-
+import { HStack } from "@/shared/ui/Stack";
+import { Icon } from "@/shared/ui/Icon/Icon";
+import NotificationIcon from "@/shared/assets/icons/notification-20-20.svg";
 interface NavbarProps {
   className?: string;
 }
@@ -34,7 +36,6 @@ export const Navbar = memo(({ className }: NavbarProps) => {
     dispatch(userActions.logout());
   }, [dispatch]);
 
-  // ✅ Проверка на ADMIN или OWNER
   const userRoles = authData?.roles ?? authData?.role ?? [];
 
   const isAdminPanelVisible =
@@ -57,24 +58,28 @@ export const Navbar = memo(({ className }: NavbarProps) => {
         >
           {t("Создать статью")}
         </AppLink>
-        <Dropdown
-          direction="bottom left"
-          className={cls.dropdown}
-          items={[
-            ...(isAdminPanelVisible
-              ? [{ content: t("Админ панель"), href: RoutePath.admin_panel }]
-              : []),
-            {
-              content: t("Профиль"),
-              href: RoutePath.profile + authData.id,
-            },
-            {
-              content: t("Выйти"),
-              onClick: onLogout,
-            },
-          ]}
-          trigger={<Avatar size={30} src={authData.avatar} />}
-        />
+        <HStack gap="16" className={cls.actions}>
+          <Button theme={ThemeButton.CLEAR}>
+            <Icon Svg={NotificationIcon} inverted />
+          </Button>
+          <Dropdown
+            direction="bottom left"
+            items={[
+              ...(isAdminPanelVisible
+                ? [{ content: t("Админ панель"), href: RoutePath.admin_panel }]
+                : []),
+              {
+                content: t("Профиль"),
+                href: RoutePath.profile + authData.id,
+              },
+              {
+                content: t("Выйти"),
+                onClick: onLogout,
+              },
+            ]}
+            trigger={<Avatar size={30} src={authData.avatar} />}
+          />
+        </HStack>
       </header>
     );
   }

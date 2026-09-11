@@ -55,10 +55,12 @@ export const ArticleList = memo((props: ArticleListProps) => {
           ),
         )}
       >
-        {articles.length > 0 ? (
-          <div className={cls.list}>{articles.map(renderArticle)}</div>
+        {articles.length > 0 || isLoading ? (
+          <div className={cls.list}>
+            {articles.map(renderArticle)}
+            {isLoading && getSkeletons(view)}
+          </div>
         ) : null}
-        {isLoading && getSkeletons(view)}
         {!isLoading && articles.length === 0 && <Text text={t("Статей нет")} />}
       </div>
     );
@@ -72,8 +74,10 @@ export const ArticleList = memo((props: ArticleListProps) => {
         [className, cls[view]].filter((item): item is string => Boolean(item)),
       )}
     >
-      {articles.length > 0 ? articles.map(renderArticle) : null}
-      {isLoading && getSkeletons(view)}
+      <div className={cls.list}>
+        {articles.map(renderArticle)}
+        {isLoading && getSkeletons(view)}
+      </div>
       {!isLoading && articles.length === 0 && <Text text={t("Статей нет")} />}
     </div>
   );

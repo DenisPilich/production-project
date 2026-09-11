@@ -8,6 +8,7 @@ module.exports = (env = {}) => {
   const mode = env.mode || "development";
   const port = env.port || 3000;
   const isDev = mode === "development";
+  const shouldAnalyze = Boolean(env.analyze);
 
   return {
     mode: mode,
@@ -61,10 +62,13 @@ module.exports = (env = {}) => {
         __IS_DEV__: JSON.stringify(isDev),
       }),
       isDev && new webpack.HotModuleReplacementPlugin(),
-      new BundleAnalyzerPlugin({
-        openAnalyzer: false,
-      }),
-      
+      shouldAnalyze &&
+        new BundleAnalyzerPlugin({
+          analyzerMode: "static",
+          openAnalyzer: false,
+          reportFilename: "bundle-report.html",
+        }),
+
       new CopyWebpackPlugin({
         patterns: [
           {

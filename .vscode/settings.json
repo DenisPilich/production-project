@@ -1,47 +1,32 @@
 {
   // Настройки ESLint
   "eslint.enable": true,
-  "eslint.validate": [
-    "javascript",
-    "javascriptreact",
-    "typescript",
-    "typescriptreact"
-  ],
+  "eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
   "eslint.format.enable": true,
   "eslint.lintTask.enable": true,
-  
-  // Авто-исправление при сохранении
-  "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
-  },
-  
-  // Интеграция с форматтером
-  "editor.formatOnSave": true,
-  "editor.defaultFormatter": "dbaeumer.vscode-eslint",
-  
-  // Типы файлов для ESLint
   "eslint.options": {
     "extensions": [".js", ".jsx", ".ts", ".tsx"]
   },
-  {
+
   // Stylelint настройки
   "stylelint.enable": true,
   "stylelint.validate": ["css", "scss", "sass"],
   "stylelint.snippet": ["css", "scss", "sass"],
-  
+
   // Авто-исправление при сохранении
   "editor.codeActionsOnSave": {
     "source.fixAll.stylelint": true,
     "source.fixAll.eslint": true
   },
-  
+
   // Интеграция с CSS/SCSS
   "css.validate": false,
   "scss.validate": false,
   "less.validate": false,
-  
+
   // Форматирование
   "editor.formatOnSave": true,
+  "editor.defaultFormatter": "dbaeumer.vscode-eslint",
   "[scss]": {
     "editor.defaultFormatter": "stylelint.vscode-stylelint"
   },

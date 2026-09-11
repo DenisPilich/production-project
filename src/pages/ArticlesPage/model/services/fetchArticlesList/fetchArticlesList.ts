@@ -14,6 +14,7 @@ import { addQueryParams } from '@/shared/lib/url/addQueryParams/addQueryParams';
 
 interface FetchArticlesListProps {
     replace?: boolean;
+    page?: number;
 }
 
 export const fetchArticlesList = createAsyncThunk<
@@ -28,7 +29,7 @@ export const fetchArticlesList = createAsyncThunk<
             const sort = getArticlesPageSort(getState() as StateSchema);
             const order = getArticlesPageOrder(getState() as StateSchema);
             const search = getArticlesPageSearch(getState() as StateSchema);
-            const page = getArticlesPageNum(getState() as StateSchema);
+            const page = props?.page ?? getArticlesPageNum(getState() as StateSchema);
             const type = getArticlesPageType(getState() as StateSchema);
 
             try {

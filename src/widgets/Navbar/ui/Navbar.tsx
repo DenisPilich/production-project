@@ -7,13 +7,13 @@ import { classNames } from "@/shared/lib/classNames/classNames";
 import { Text, TextTheme } from "@/shared/ui/Text/Text";
 import { AppLink, AppLinkTheme } from "@/shared/ui/AppLink/AppLink";
 import { RoutePath } from "@/shared/config/routeConfig/routeConfig";
-import { Dropdown } from "@/shared/ui/Dropdown/Dropdown";
 import Avatar from "@/shared/ui/Avatar/Avatar";
 import Button, { ThemeButton } from "@/shared/ui/Button/Button";
 import LoginModal from "@/features/AuthByUsername/ui/LoginModal/LoginModal";
 import { HStack } from "@/shared/ui/Stack";
 import { Icon } from "@/shared/ui/Icon/Icon";
 import NotificationIcon from "@/shared/assets/icons/notification-20-20.svg";
+import { Dropdown } from "@/shared/ui/Popups";
 interface NavbarProps {
   className?: string;
 }

@@ -1,4 +1,3 @@
-import { ListBox } from "@/shared/ui/ListBox/ListBox";
 import { HStack } from "@/shared/ui/Stack";
 import { Page } from "@/widgets/Page/Page";
 import { memo } from "react";
@@ -9,7 +8,7 @@ export const MainPage = memo(() => {
   return (
     <Page>
       {t("Главная страница")}
-      <HStack >
+      <HStack>
         <div>1</div>
         <div>2</div>
         <div>3</div>

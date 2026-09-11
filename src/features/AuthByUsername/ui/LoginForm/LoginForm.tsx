@@ -44,7 +44,6 @@ export const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
 
   const onLoginClick = useCallback(async () => {
     try {
-      // @ts-ignore
       await dispatch(loginByUsername({ username, password })).unwrap();
       onSuccess();
     } catch {

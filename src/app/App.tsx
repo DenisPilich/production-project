@@ -6,7 +6,7 @@ import { Sidebar } from "@/widgets/Sidebar";
 import { AppRouter } from "./providers/router";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserInited, userActions } from "@/entities/User";
-import { useTranslation } from "react-i18next";
+import { PageLoader } from "@/shared/ui/Pageloader";
 
 export default function App() {
   const { theme } = useTheme();
@@ -18,7 +18,7 @@ export default function App() {
 
   return (
     <div className={classNames("app", {}, [theme])}>
-      <Suspense fallback={<div>"Loading..."</div>}>
+      <Suspense fallback={<PageLoader />}>
         <Navbar />
         <div className="content-page">
           <Sidebar />

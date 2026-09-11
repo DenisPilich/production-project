@@ -17,21 +17,16 @@ export const updateProfileData = createAsyncThunk<
     const state = getState() as StateSchema;
     const formData = getProfileForm(state);
 
-    const result = validateProfileData(formData);
+    const errors = validateProfileData(formData);
 
-    // validateProfileData returns { errors: ValidateProfileError[], valid: boolean }
-    if (!result.valid) {
-      return rejectWithValue(result.errors);
+    if (errors.length) {
+      return rejectWithValue(errors);
     }
-
-    console.log("Sending formData:", formData); // ✅ проверка
 
     const response = await extra.api.put<Profile>(
       "/profile/" + formData?.id,
       formData,
     );
-
-    console.log("Response data:", response.data); // ✅ проверка
 
     if (!response.data) {
       throw new Error();

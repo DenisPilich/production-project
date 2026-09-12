@@ -2,6 +2,12 @@
   position: relative;
 }
 
+.notrggier {
+  border: 1px solid var(--primary-color);
+  border-radius: 6px;
+  padding: 5px 10px;
+}
+
 .trigger {
   background: none;
   outline: none;
@@ -37,4 +43,23 @@
 
 .disabled {
   opacity: 0.7;
+}
+
+/**
+ * Режим только-чтения: затемняем весь селект вместе с подписью-меткой
+ * (как Input.readonly -> opacity 0.7). Класс вешается на корневой
+ * контейнер ListBox, поэтому метка и значение затемняются одинаково.
+ */
+.readonly {
+  opacity: 0.7;
+
+  /**
+   * Кнопка-триггер получает ещё и .disabled от Button (opacity 0.5),
+   * из-за чего прозрачности перемножались бы (0.7 * 0.5 = 0.35).
+   * Сбрасываем её до 1 — итоговое затемнение даёт родитель.
+   */
+  button:disabled {
+    opacity: 1;
+    cursor: default;
+  }
 }

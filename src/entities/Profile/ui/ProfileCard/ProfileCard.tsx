@@ -117,9 +117,9 @@ export const ProfileCard = ({
         className={cls.input}
         readonly={readonly}
         onChange={onChangeAge}
-        type="number" // ✅ добавляем type="number"
-        min="0" // ✅ минимальное значение
-        max="150" // ✅ максимальное значение
+        type="number"
+        min="0" // 
+        max="150" //
       />
       <Input
         value={data?.city || ""}

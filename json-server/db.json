@@ -1159,5 +1159,24 @@
       "username": "user",
       "avatar": "https://pic.rutubelist.ru/user/3b/27/3b2758ad5492a76b578f7ee072e4e894.jpg"
     }
+  ],
+  "notifications": [
+    {
+      "id": "1",
+      "title": "Новый комментарий",
+      "description": "К вашей статье «Что нового в JS за 2026 год?» оставили комментарий",
+      "href": "http://localhost:3000/articles/1"
+    },
+    {
+      "id": "2",
+      "title": "Статья опубликована",
+      "description": "Ваша статья «Что нового в JS за 2026 год?» успешно опубликована"
+    },
+    {
+      "id": "3",
+      "title": "Добро пожаловать!",
+      "description": "Спасибо за регистрацию. Заполните профиль, чтобы рассказать о себе",
+      "href": "http://localhost:3000/profile/1"
+    }
   ]
 }

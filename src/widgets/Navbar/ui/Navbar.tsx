@@ -1,8 +1,8 @@
 import { useTranslation } from "react-i18next";
 import React, { memo, useCallback, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import cls from "./Navbar.module.scss";
-import { getUserAuthData, userActions, UserRole } from "@/entities/User";
+import { getUserAuthData, UserRole } from "@/entities/User";
 import { classNames } from "@/shared/lib/classNames/classNames";
 import { Text, TextTheme } from "@/shared/ui/Text/Text";
 import { AppLink, AppLinkTheme } from "@/shared/ui/AppLink/AppLink";
@@ -12,7 +12,6 @@ import LoginModal from "@/features/AuthByUsername/ui/LoginModal/LoginModal";
 import { HStack } from "@/shared/ui/Stack";
 import { NotificationButton } from "@/features/notificationButton";
 import { AvatarDropdown } from "@/features/avatarDropdown";
-import { Drawer } from "@/shared/ui/Drawer/Drawer";
 interface NavbarProps {
   className?: string;
 }
@@ -21,8 +20,6 @@ export const Navbar = memo(({ className }: NavbarProps) => {
   const { t } = useTranslation();
   const [isAuthModal, setIsAuthModal] = useState(false);
   const authData = useSelector(getUserAuthData);
-  const dispatch = useDispatch();
-  const [isOpen, setIsOpen] = useState(false);
 
   const onCloseModal = useCallback(() => {
     setIsAuthModal(false);
@@ -31,10 +28,6 @@ export const Navbar = memo(({ className }: NavbarProps) => {
   const onShowModal = useCallback(() => {
     setIsAuthModal(true);
   }, []);
-
-  const onLogout = useCallback(() => {
-    dispatch(userActions.logout());
-  }, [dispatch]);
 
   const userRoles = authData?.roles ?? authData?.role ?? [];
 
@@ -59,9 +52,6 @@ export const Navbar = memo(({ className }: NavbarProps) => {
           {t("Создать статью")}
         </AppLink>
         <HStack gap="16" className={cls.actions}>
-          <Drawer isOpen={isOpen} onClose={() => setIsOpen(false)}>
-            {" "}
-          </Drawer>
           <NotificationButton />
           <AvatarDropdown />
         </HStack>

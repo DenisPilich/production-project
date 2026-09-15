@@ -9,6 +9,7 @@ import cls from "./Modal.module.scss";
 import { useTheme } from "@/app/providers/ThemeProvider";
 import { classNames } from "@/shared/lib/classNames/classNames";
 import Portal from "../Portal/Portal";
+import { Overlay } from "../Overlay/Overlay";
 
 interface ModalProps {
   className?: string;
@@ -53,9 +54,9 @@ export const Modal = (props: ModalProps) => {
     [closeHandler],
   );
 
-  const onContentClick = (e: React.MouseEvent) => {
+  const stopPropagation = useCallback((e: React.MouseEvent) => {
     e.stopPropagation();
-  };
+  }, []);
 
   useEffect(() => {
     if (isOpen) {
@@ -84,8 +85,10 @@ export const Modal = (props: ModalProps) => {
   return (
     <Portal>
       <div className={classNames(cls.Modal, mods, additionalClasses)}>
+        <Overlay onClick={closeHandler} />
         <div className={cls.overlay} onClick={closeHandler}>
-          <div className={cls.content} onClick={onContentClick}>
+          {/* Клик по содержимому не должен всплывать до .overlay и закрывать модалку */}
+          <div className={cls.content} onClick={stopPropagation}>
             {children}
           </div>
         </div>

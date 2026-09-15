@@ -12,6 +12,7 @@ import LoginModal from "@/features/AuthByUsername/ui/LoginModal/LoginModal";
 import { HStack } from "@/shared/ui/Stack";
 import { NotificationButton } from "@/features/notificationButton";
 import { AvatarDropdown } from "@/features/avatarDropdown";
+import { Drawer } from "@/shared/ui/Drawer/Drawer";
 interface NavbarProps {
   className?: string;
 }
@@ -21,6 +22,7 @@ export const Navbar = memo(({ className }: NavbarProps) => {
   const [isAuthModal, setIsAuthModal] = useState(false);
   const authData = useSelector(getUserAuthData);
   const dispatch = useDispatch();
+  const [isOpen, setIsOpen] = useState(false);
 
   const onCloseModal = useCallback(() => {
     setIsAuthModal(false);
@@ -57,6 +59,9 @@ export const Navbar = memo(({ className }: NavbarProps) => {
           {t("Создать статью")}
         </AppLink>
         <HStack gap="16" className={cls.actions}>
+          <Drawer isOpen={isOpen} onClose={() => setIsOpen(false)}>
+            {" "}
+          </Drawer>
           <NotificationButton />
           <AvatarDropdown />
         </HStack>
